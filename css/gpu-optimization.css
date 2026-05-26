@@ -1,0 +1,79 @@
+/* ================================================================
+   GPU OPTIMIZATION — Compositing layer hints & paint containment
+   ================================================================ */
+
+/* ── Promote long-lived animated layers to GPU compositor ── */
+#floral-canvas,
+#particle-canvas,
+#particle-canvas-intro,
+#finale-canvas {
+  will-change: contents;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ── Contain painting to sections; prevent full-page repaints ── */
+#main-site  { contain: layout style; }
+#intro-scene { contain: layout style; }
+section     { contain: layout; }
+
+/* ── Falling petals: CSS-only animation, no JS per-frame ── */
+#falling-petals,
+#floating-orbs {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* ── Scrollable content: promote to own layer ── */
+.glass {
+  transform: translate3d(0, 0, 0);
+}
+
+/* ── Disable heavy filters on low-end ── */
+.tier-low .cinematic-vignette { opacity: 0.6 !important; }
+.tier-low .bg-flower { display: none; }
+.tier-low .hero-bg-flowers { display: none; }
+.tier-low .inline-flower { animation: none !important; }
+.tier-low .s-petal { animation-play-state: paused !important; }
+
+/* ── Reduce backdrop-filter cost on mid/low ── */
+.tier-low  .glass { backdrop-filter: blur(6px)  !important; -webkit-backdrop-filter: blur(6px)  !important; }
+.tier-mid  .glass { backdrop-filter: blur(12px) !important; -webkit-backdrop-filter: blur(12px) !important; }
+
+/* ── Passive scroll: hardware-accelerated transform parallax only ── */
+.parallax-layer { will-change: transform; }
+
+/* ── Cursor trail: contain within viewport ── */
+.cursor-petal {
+  contain: layout style size;
+  pointer-events: none;
+}
+
+/* ── Reduce motion for accessibility ── */
+@media (prefers-reduced-motion: reduce) {
+  #floral-canvas,
+  #particle-canvas,
+  #particle-canvas-intro,
+  .falling-petal,
+  .orb,
+  .bg-flower,
+  .cursor-petal,
+  .s-petal {
+    display: none !important;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ── Music player: pindah ke kiri bawah ──
+   Supaya konten tengah tidak terganggu secara visual */
+#cp-root {
+  right: auto !important;
+  left: 28px !important;
+}

@@ -1,0 +1,140 @@
+/* =============================================
+   ROMANTIC FLOWER WEBSITE — ANIMATIONS.CSS
+   ============================================= */
+
+/* ===========================
+   GIFT OPEN ANIMATION
+   =========================== */
+@keyframes lid-fly {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  40%  { transform: translateY(-120px) rotate(-25deg); opacity: 1; }
+  100% { transform: translateY(-300px) rotate(-50deg) scale(0.3); opacity: 0; }
+}
+
+@keyframes gift-shake {
+  0%,100% { transform: rotate(0deg); }
+  20%     { transform: rotate(-4deg); }
+  40%     { transform: rotate(4deg); }
+  60%     { transform: rotate(-3deg); }
+  80%     { transform: rotate(3deg); }
+}
+
+@keyframes bloom-burst {
+  0%   { opacity: 0; transform: translate(-50%,-50%) scale(0) rotate(0deg); }
+  40%  { opacity: 1; transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(var(--rot)); }
+  80%  { opacity: 0.9; transform: translate(var(--tx2), var(--ty2)) scale(1) rotate(var(--rot2)); }
+  100% { opacity: 0; transform: translate(var(--tx3), var(--ty3)) scale(0.8) rotate(var(--rot3)); }
+}
+
+/* ===========================
+   SECTION REVEAL
+   =========================== */
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-50px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(50px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes zoom-in {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ===========================
+   FLOATING PARTICLES
+   =========================== */
+@keyframes particle-float {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0.8; }
+  25%  { transform: translateY(-30px) translateX(15px) scale(1.05); }
+  50%  { transform: translateY(-10px) translateX(-10px) scale(0.95); opacity: 0.5; }
+  75%  { transform: translateY(-40px) translateX(20px) scale(1.02); }
+  100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.8; }
+}
+
+/* ===========================
+   GLOW PULSE
+   =========================== */
+@keyframes glow-pulse {
+  0%,100% { box-shadow: 0 0 20px rgba(232,105,138,0.3), 0 0 40px rgba(232,105,138,0.1); }
+  50%      { box-shadow: 0 0 40px rgba(232,105,138,0.6), 0 0 80px rgba(232,105,138,0.25), 0 0 120px rgba(232,105,138,0.1); }
+}
+.glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+
+/* ===========================
+   INTRO SCENE ENTRANCE
+   =========================== */
+@keyframes intro-entrance {
+  from { opacity: 0; transform: scale(0.7) translateY(40px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+#gift-wrapper { animation: intro-entrance 1.2s cubic-bezier(0.34,1.56,0.64,1) 0.3s both; }
+
+/* ===========================
+   SPARKLE STARS
+   =========================== */
+@keyframes sparkle {
+  0%,100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50%      { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+.sparkle {
+  position: absolute;
+  pointer-events: none;
+  animation: sparkle ease-in-out infinite;
+}
+
+/* ===========================
+   INTRO BG PULSE
+   =========================== */
+@keyframes intro-bg-pulse {
+  0%,100% { background: linear-gradient(135deg, #1a0510, #3d0f25 40%, #1e0815); }
+  50%      { background: linear-gradient(135deg, #2a0a1a, #5c1a38 40%, #2e0c22); }
+}
+#intro-scene { animation: intro-bg-pulse 4s ease-in-out infinite; }
+
+/* ===========================
+   SMOOTH PAGE TRANSITION
+   =========================== */
+@keyframes page-reveal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+#main-site.entering { animation: page-reveal 1s ease forwards; }
+
+/* ===========================
+   HERO GLOW RING
+   =========================== */
+@keyframes ring-expand {
+  0%   { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ===========================
+   TWINKLE
+   =========================== */
+@keyframes twinkle {
+  0%,100% { opacity: 0.2; transform: scale(0.8); }
+  50%      { opacity: 1; transform: scale(1.2); }
+}
+
+/* ===========================
+   CARD HOVER GLOW
+   =========================== */
+.reason-card:hover { animation: glow-pulse 2s ease-in-out infinite; }
+.gallery-card:hover { animation: glow-pulse 2s ease-in-out infinite; }
+
+/* ===========================
+   CUSTOM CURSOR TRAIL
+   =========================== */
+.cursor-petal {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 1rem;
+  animation: cursor-fade 0.8s ease forwards;
+}
+@keyframes cursor-fade {
+  0%   { opacity: 1; transform: scale(1) translateY(0); }
+  100% { opacity: 0; transform: scale(0.5) translateY(-30px); }
+}
